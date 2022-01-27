@@ -9,10 +9,10 @@ def parser_snp_info(data_file):
     with open(data_file) as F:
         F.readline()
         for line in F:
-            rsid, effect_allele, beta, maf = line.strip().split(",")
+            rsid, effect_allele, maf, beta = line.strip().split(",")
             beta = float(beta)
             maf = float(maf)
-            snp_info_dict[rsid] = [effect_allele, beta, maf]
+            snp_info_dict[rsid] = [effect_allele, maf, beta]
     return snp_info_dict
 
 # 从stdin读取输入数据
@@ -28,7 +28,7 @@ try:
     #prs_value = 1
     #population_prs_value = 1
 
-    for rsid, (effect_allele, beta, maf) in snp_info_dict.items():
+    for rsid, (effect_allele, maf, beta) in snp_info_dict.items():
         genotype = inputs.get(rsid, "--")
         # 不包含微基因芯片或者微基因芯片检出结果为no call的位点的值用人群频率来折合代替:
         if genotype in ("--", "__"):
@@ -40,8 +40,8 @@ try:
 
         population_prs_value += 2 * maf * beta
         #population_prs_value += math.pow(_or, 2*maf)
-
     
+     
     # 将累加的beta值转为OR值,如果本身就是or值的累成得到的结果，则不需再转换。
     prs_value = math.exp(prs_value)
     population_prs_value = math.exp(population_prs_value)
