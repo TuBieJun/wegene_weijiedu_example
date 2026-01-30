@@ -29,7 +29,7 @@ try:
     #population_prs_value = 1
 
     for rsid, (effect_allele, maf, beta) in snp_info_dict.items():
-        genotype = inputs.get(rsid, "--")
+        genotype = inputs.get(rsid.upper(), "--")
         # 不包含微基因芯片或者微基因芯片检出结果为no call的位点的值用人群频率来折合代替:
         if genotype in ("--", "__"):
             prs_value += 2 * maf * beta
