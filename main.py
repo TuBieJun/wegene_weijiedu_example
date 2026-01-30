@@ -42,7 +42,7 @@ try:
         #population_prs_value += math.pow(_or, 2*maf)
     
      
-    # 将累加的beta值转为OR值,如果本身就是or值的累成得到的结果，则不需再转换。
+    # 将累加的beta值转为OR值,如果本身就是or值的累乘得到的结果，则不需再转换。
     prs_value = math.exp(prs_value)
     population_prs_value = math.exp(population_prs_value)
     
