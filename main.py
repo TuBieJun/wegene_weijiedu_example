@@ -39,7 +39,7 @@ try:
             #prs_value *= math.pow(_or, genotype.count(effect_allele)) 
 
         population_prs_value += 2 * maf * beta
-        #population_prs_value += math.pow(_or, 2*maf)
+        #population_prs_value *= math.pow(_or, 2*maf)
     
      
     # 将累加的beta值转为OR值,如果本身就是or值的累乘得到的结果，则不需再转换。
